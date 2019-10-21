@@ -7,4 +7,5 @@ categories:
 
 # 1.Switch of Keyboard
 
- https://www.zfrontier.com/post/detail/6070 
+[zfrontier]: https://www.zfrontier.com/post/detail/6070
+
