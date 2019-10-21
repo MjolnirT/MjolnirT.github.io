@@ -11,6 +11,10 @@ DataFrame is a common data structure in pandas, and it can be multi dimensional 
 
 pandas.DataFrame(data=,index=,columns=,dtype=,copy=False)
 
+```python
+df = pd.DataFrame(data=, columns=, index=)#index is the label in the vertical way
+```
+
 permutation in dataframe
 
 ```python
@@ -66,3 +70,25 @@ df.dropna()
 df.dropna(axis=1, thresh=3) #deleting three terms in column whose values are NaN
 df.dropna(how='ALL')  #deleting the row whose values are all NaN
 ```
+
+inplace parameter
+
+```
+DF = DF.drop('column_name', axis=1)；
+DF.drop('column_name',axis=1, inplace=True)
+DF.drop([DF.columns[[0,1, 3]]], axis=1, inplace=True)   # Note: zero indexed
+```
+
+Those commands have changed the original data, df, with the inplace parameter having been set True.
+
+### regular expression
+
+```python
+import re
+
+txt = "here is the text need to be matched"
+x = re.search("^here.*matched", txt) #judge whether txt can be matched or not
+x = re.findall("ed", txt) #return all matched result
+
+```
+
