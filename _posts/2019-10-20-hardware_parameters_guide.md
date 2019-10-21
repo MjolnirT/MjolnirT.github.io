@@ -1,5 +1,5 @@
 ---
-titlle: Hardware Parameters Guide
+title: Hardware Parameters Guide
 data: 10-20-2019
 categories:
 - Hardware periphery
