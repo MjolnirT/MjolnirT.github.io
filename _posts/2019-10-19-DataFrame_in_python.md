@@ -59,6 +59,15 @@ data.loc[(data['a']=='m')&(data['d']=='m')]#seletring the entry whose value of k
 data.loc[~data['c'].isin(['one','two'])]
 ```
 
+### getting back 
+
+```python
+df.isnull().sum(axis=1)#returning the total number of rows whose value it is NaN
+df.isnull().sum(axis=0)#returning the total number of columns whose value it is NaN
+df.count()#returning the total number of columns whose value is not null
+df.count(axis=1)#returning the total number of rows whose value is not null
+```
+
 
 
 # 2.list
