@@ -68,6 +68,16 @@ df.count()#returning the total number of columns whose value is not null
 df.count(axis=1)#returning the total number of rows whose value is not null
 ```
 
+### delete the duplicated rows
+
+```python
+from pandas import Series, DataFrame
+
+IsDuplicated = data.duplicated()#initiate a mask to represent whether each line has been duplicated or not. Usually, only the first time show has been evaluated as True, otherwise False.
+data = data.drop_duplicates()
+data = data.drop_duplicates(['column_name'])
+```
+
 
 
 # 2.list
