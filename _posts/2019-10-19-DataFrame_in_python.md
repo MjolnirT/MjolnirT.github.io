@@ -9,13 +9,13 @@ categories:
 
 DataFrame is a common data structure in pandas, and it can be multi dimensional instead of two like the list in dataset. Both row and column have index, thus it can be regard as a dictionary out of series. Each series is an entry of DataFrame.
 
-pandas.DataFrame(data=,index=,columns=,dtype=,copy=False)
+### pandas.DataFrame(data=,index=,columns=,dtype=,copy=False)
 
 ```python
 df = pd.DataFrame(data=, columns=, index=)#index is the label in the vertical way
 ```
 
-permutation in dataframe
+### permutation in dataframe
 
 ```python
 #first way
@@ -26,14 +26,65 @@ for i in range(len(df)):
     do_something
 ```
 
+### add entry
+
+```Python
+df#the dataframe you need to operate
+df.loc[('a', i),:]=None#adding index the the ith line
+new_df = df.append(data)#we must have stated the data(dataframe) before appeding to the exist df
+```
+
+### delete entry
+
+```python
+#filtering
+df[df['a']<10]
+df[df['a'].notnull()]
+df[df['a'].isnull()]
+#deleting
+df.drop(df.index[i])#delete ith entry
+c = []#put the index of entries which need to be deleted into a list c
+df.drop(df.index[c])
+df.drop(df.index[i:])#delete i continuous entries
+#delete columns
+df.drop['column_name', axis=1,inplace=False]#default set is False, if we want to change in the original dataset, the inplace paremeter should be set as True
+```
+
+### select entry
+
+```python
+data.loc[data['c']=='one']#selecting the entry whose value of key c is one
+data.loc[data['b'].isin(['1','3'])]
+data.loc[(data['a']=='m')&(data['d']=='m')]#seletring the entry whose value of key a and b are both m
+data.loc[~data['c'].isin(['one','two'])]
+```
+
 
 
 # 2.list
 
-add an element to the list
+### add an element to the list
 
 ```python
 list.append('element') #add to the end
+```
+
+### select list by rows
+
+```python
+n = list_data[1:3] #select certain piece of python: 1 to 3 th line, except the first line 0
+o = list_data.loc[1]
+u = list_data.loc[[1,3]]
+list_data_drop = list_data.drop([1,2], axis=0)#delete rows but not change the index of others
+```
+
+### select list by columns
+
+```python
+q = list_data['column_name']
+q = list_data[['column_name_1','column_name_2']]
+r = list_data[[0,1,2]]
+x = list_data[list(range(5))]
 ```
 
 
