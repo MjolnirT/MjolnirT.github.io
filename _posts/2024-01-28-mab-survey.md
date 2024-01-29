@@ -6,3 +6,6 @@ comments: true
 share: true
 related: false
 ---
+
+Here is a short survey covering the most common seen Multi-armed bandits (MAB) 
+algorithms. You can download the full survey [here](/assets/survey-of-mab.pdf).
