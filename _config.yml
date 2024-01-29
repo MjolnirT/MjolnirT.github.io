@@ -115,7 +115,7 @@ author:
       url: "https://www.linkedin.com/in/hao-qin-183a89197/"
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: "mailto:hqin@arizona.edu"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
