@@ -29,32 +29,32 @@ After reconstructing the reward function, we are also concerned with its perform
 In the work of this paper (TRAVEL), it makes contributions summarized 
 
 1. (Answer to Q1) Deriving an error bound on the recovered reward caused by the estimation of the transition model and of the expert's policy.
-2. (Answer to Q2) Deriving an bound on the induced policy in the target environment (known) from demonstrations on the source environment (unknow).
+2. (Answer to Q2) Deriving an bound on the induced policy in the target environment (known) from demonstrations on the source environment (unknown).
 3. (Sample complexity analysis) Based on 1. and 2., they apply a sample complexity analysis by considering a uniform sampling strategy for the IRL problem.
-4. (Algorithm) Proposing a new algorithm caleed *Transferable Reward ActiVEirL* (TRAVEL) that adapts the sampling strategy to the features of the problem.
+4. (Algorithm) Proposing a new algorithm called *Transferable Reward ActiVEirL* (TRAVEL) that adapts the sampling strategy to the features of the problem.
 
 The Inverse RL algorithm is a mapping from the problem space $\mathfrak{P}$ to the induced reward space $R_{\mathfrak{P}}$. We require that for any reward function from $R_{\mathfrak{P}}$, the expert policy should always be optimal in the given environment $M$. However, due to the ambiguity of the IRL problem, the solution of an IRL algorithm might not be unique, which means that $R_{\mathfrak{P}}$ might not be a single-element set.
 
 ## 2. Measuring Rewards in the Feasible Set
-**Lemma 3.2** (Feasible Reward Set Explicit) *Let $\mathfrak{P}=(\mathcal{M}, \pi^E)$ be an IRL problem. Let $r\in \mathbb{R}^{\mathcal{S} \times \mathcal{A}}$, then $r$ is a feasible reward, i.e., $r\in R_{\mathfrak{P}}$ if and only if there exist $\zeta \in R^{\mathcal{S} \times \mathcal{A}}_{\geq 0}$ and $V \in \mathbb{R}^{\mathcal{S}}$ such that:*
-$$
-    r = - \bar{B}^{\pi^E} \zeta + (E - \gamma P) V.
+**Lemma 3.2** (Feasible Reward Set Explicit) *Let $$\mathfrak{P}=(\mathcal{M}, \pi^E)$$ be an IRL problem. Let $$r\in \mathbb{R}^{\mathcal{S} \times \mathcal{A}}$$, then $$r$$ is a feasible reward, i.e., $$r\in R_{\mathfrak{P}}$$ if and only if there exist $$\zeta \in R^{\mathcal{S} \times \mathcal{A}}_{\geq 0}$$ and $$V \in \mathbb{R}^{\mathcal{S}}$$ such that:*
+
+$$    r = - \bar{B}^{\pi^E} \zeta + (E - \gamma P) V.
 $$
 
 
-**Theorem 3.1** (Error Propagation) *Let $\mathfrak{P} = (\mathcal{M}, \pi^E)$ and $\hat{\mathfrak{P}} = (\hat{\mathcal{M}}, \hat{\pi}^E)$ be two IRL problems. Then, for any $r \in R_{\mathfrak{P}}$ such that $r=-\bar{B} ^{\pi^E}\zeta + (E-\gamma P)V$ and $||r||_\infty \leq R_{\max}$ there exists $|hat{r}\in R_{\mathfrak{P}}$ such that element-wise it holds that*
+**Theorem 3.1** (Error Propagation) *Let $$\mathfrak{P} = (\mathcal{M}, \pi^E)$$ and $$\hat{\mathfrak{P}} = (\hat{\mathcal{M}}, \hat{\pi}^E)$$ be two IRL problems. Then, for any $$r \in R_{\mathfrak{P}}$$ such that $$r=-\bar{B} ^{\pi^E}\zeta + (E-\gamma P)V$$ and $$||r||_\infty \leq R_{\max}$$ there exists $$|hat{r}\in R_{\mathfrak{P}}$$ such that element-wise it holds that*
 $$
     |r - \hat{r}| \leq \hat{B}^{\pi^E} B^{\hat{\pi}^E} \zeta + \gamma |(P - \hat{P})V|
 $$
-*Furthermore, $||\zeta||_\infty \leq \frac{R_{\max}}{1-\gamma}$ and $||V||_{\infty} \leq \frac{R_{\max}}{1-\gamma}$.*
+*Furthermore, $$||\zeta||_\infty \leq \frac{R_{\max}}{1-\gamma}$$ and $$||V||_{\infty} \leq \frac{R_{\max}}{1-\gamma}$$.*
 
-On the RHS, the first term quantifies the error brought by the misspecification of the expert policy $\pi^E$ and the estimated policy $\hat{\pi}^E$. The second term represents the error due to the difference between the true transition model $P$ and the estimated transition model $\hat{P}$. The second term discribes the error from the estimation on the transition model.
+On the RHS, the first term quantifies the error brought by the misspecification of the expert policy $$\pi^E$$ and the estimated policy $$\hat{\pi}^E$$. The second term represents the error due to the difference between the true transition model $P$ and the estimated transition model $$\hat{P}$$. The second term describes the error from the estimation on the transition model.
 
 ## 3. Transferring Rewards
 
-In this section, the author is going to address the challenge of transferring rewards. Specifically, suppose that there is an **unknown source** environment $\mathcal{M}$ and a **known target** environment $\mathcal{M}'$, and a reward function $r^E$ such that its induced policy $\pi^E$ is optimal in $\mathcal{M}$ and $(\pi')^E$ is optimal in $\mathcal{M}'$. If we can solve the source IRL problem $\mathfrak{P}=(\mathcal{M}, \pi^E)$ to derive a rebuilt reward $R_{\mathfrak{P}}$, the rebuilt reward does not necessarily have its induced optimal policy $\pi^E_{R_{\mathfrak{P}}}$ equal to $\pi^E$. Equivalently, the rebuilt reward $R_{\mathfrak{P}}$ might not be equal to $r^E$ due to the ambiguity. To address this additional ambiguity issue, the authors introduces the following assumption
+In this section, the author is going to address the challenge of transferring rewards. Specifically, suppose that there is an **unknown source** environment $$\mathcal{M}$$ and a **known target** environment $$\mathcal{M}'$$, and a reward function $$r^E$$ such that its induced policy $$\pi^E$$ is optimal in $$\mathcal{M}$$ and $$(\pi')^E$$ is optimal in $$\mathcal{M}'$$. If we can solve the source IRL problem $$\mathfrak{P}=(\mathcal{M}, \pi^E)$$ to derive a rebuilt reward $$R_{\mathfrak{P}}$$, the rebuilt reward does not necessarily have its induced optimal policy $$\pi^E_{R_{\mathfrak{P}}}$$ equal to $$\pi^E$$. Equivalently, the rebuilt reward $$R_{\mathfrak{P}}$$ might not be equal to $$r^E$$ due to the ambiguity. To address this additional ambiguity issue, the authors introduces the following assumption
 
-**Assumption 4.1** *Let $\mathfrak{P}=(\mathcal{M}, \pi^E)$ and $\mathfrak{P}'=(\mathcal{M}', (\pi')^E)$ be the source and target IRL problems. The corresponding feasible sets satisfy $\mathcal{R}_{\mathfrak{P}} \subseteq \mathcal{R}_{\mathfrak{P}'}$.*
+**Assumption 4.1** *Let $$\mathfrak{P}=(\mathcal{M}, \pi^E)$$ and $$\mathfrak{P}'=(\mathcal{M}', (\pi')^E)$$ be the source and target IRL problems. The corresponding feasible sets satisfy $$\mathcal{R}_{\mathfrak{P}} \subseteq \mathcal{R}_{\mathfrak{P}'}$$.*
 
 The intuition behind Assumption 4.1 is that once we observe the expert's behavior in the source environment, we can conclude that the action taken by the expert is optimal, but we do not know how much it differs from other suboptimal actions.
 
