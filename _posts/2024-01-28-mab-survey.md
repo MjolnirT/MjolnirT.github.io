@@ -5,6 +5,7 @@ category: Survey
 comments: true
 share: true
 related: false
+classes: wide
 ---
 
 Here is a short survey covering the most common seen Multi-armed bandits (MAB) 

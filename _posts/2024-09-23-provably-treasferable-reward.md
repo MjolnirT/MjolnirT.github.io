@@ -6,6 +6,7 @@ comments: true
 share: true
 related: false
 mathjax: true
+classes: wide
 ---
 
 This is a recap of the regert analysis in [(TRAVEL) Provably Efficient Learning of Transferable Rewards](https://proceedings.mlr.press/v139/metelli21a.html).

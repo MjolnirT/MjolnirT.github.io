@@ -6,7 +6,7 @@ comments: true
 share: true
 related: false
 mathjax: true
-
+classes: wide
 ---
 
 This is a recap of the "inverse bandit" problem first proposed in [this paper](https://arxiv.org/pdf/2106.14866.pdf).
