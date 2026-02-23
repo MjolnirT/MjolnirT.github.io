@@ -162,3 +162,16 @@ $$
 $$
 
 In the second equation, we use the definition of the visitation distribution to express the expectation over trajectories as an expectation over states and actions. In the third equation, we use the definition of the regularized Q-function to express the expected return in terms of the Q-function and value function. Finally, in the last equation, we rearrange the terms to express the difference in value functions in terms of the soft advantage function and the KL divergence between the two policies.
+
+## Cite this page
+
+If you would like to cite this page, you can use the following citation:
+
+```
+@misc{qin2026softperformance,
+  author = {Hao Qin},
+  title  = {Soft Performance Difference Lemma},
+  year   = {2026},
+  url    = {https://mjolnirt.github.io/note/soft-performance-difference-lemma/}
+}
+```
