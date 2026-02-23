@@ -118,9 +118,9 @@ $$
 \begin{aligned}
 &\quad V^{\pi^{t}}_{\lambda}(s_0)
 \\
-&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t+1}(a_k | s_k)) \right]
+&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) \right]
 \\
-&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \mathbb{E}_{\tau \sim \pi^{t+1}, s_k=s_t} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t+1}(a_k | s_k)) \mid s_1, a_t \ldots, s_t, a_t \right] \right]
+&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \mathbb{E}_{\tau \sim \pi^{t}, s_k=s_t} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) \mid s_1, a_t \ldots, s_t, a_t \right] \right]
 \\
 &= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^t \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) + \gamma^{t} \mathbb{E}_{\tau \sim \pi^{t}, s_{t}} \left[ \sum_{k=0}^\infty \gamma^k (r(s_{k+t}, a_{k+t}) - \lambda \log \pi^{t}(a_{k+t} | s_{k+t})) \mid s_1, a_t \ldots, s_t, a_t \right] \right]
 \\
