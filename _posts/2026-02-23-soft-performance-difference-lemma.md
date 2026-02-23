@@ -9,6 +9,7 @@ mathjax: true
 classes: wide
 ---
 
+This note presents the soft performance difference lemma, which is a fundamental result in regularized reinforcement learning. Nowadays, regularized reinforcement learning has become increasingly popular due to its ability to encourage exploration and improve the stability of learning algorithms, such as Soft Actor-Critic (SAC) and Proximal Policy Optimization (PPO), which has been widely used in various applications, including robotics, game playing and natural language processing (ChatGPT). The soft performance difference lemma provides a theoretical foundation for understanding the performance difference between two policies in the regularized setting, which can be used to analyze and design regularized reinforcement learning algorithms.
 
 # 1. Basic Notations
 
