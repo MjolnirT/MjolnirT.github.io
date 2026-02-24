@@ -19,7 +19,7 @@ However, the authors in this paper believe that the optimal policy leaks less in
 
 ### 1.1 The "Inverse Bandit" Problem
 
-Suppose that the agent can observe a demonstration which is sequence of decisions made by another bandit algorithm, $$\{ I_t \}_{t=1}^T$$, from the demonstration the agent expects to estimate the expected rewards $$\{ \mu_i \}_{i\in[K]}$$ in a $$K$$-armed bandit setting. Basically, the reward estimation can be viewed as a mapping from $$\{ I_t \}_{t=1}^T$$ $$ to $$\{ \hat\{mu}_i \}_{i\in[K]}$$
+Suppose that the agent can observe a demonstration which is sequence of decisions made by another bandit algorithm, $$\{ I_t \}_{t=1}^T$$, from the demonstration the agent expects to estimate the expected rewards $$\{ \mu_i \}_{i\in[K]}$$ in a $$K$$-armed bandit setting. Basically, the reward estimation can be viewed as a mapping from $$\{ I_t \}_{t=1}^T$$ to $$\{ \hat{\mu}_i \}_{i\in[K]}$$
 
 
 $$
@@ -31,7 +31,7 @@ A good estimation can minimize the misspecification error $$\mathbb{E}[ \mid \ha
 
 ### 1.2 The Base Line - Information-theoretic Lower Bound
 
-**Theorem 1** *For every $$K$$-armed Bernoulli bandit instance $$\mathcal{M}$$ satisfying $$\max_{i\in[K]} \mid \mu_i - \frac{1}{2} \mid \leq \frac{1}{4}$$ and for each suboptimal arm $$i\neq i^\star$$, the following is true. Suppose that the demonstrator employs algorithm $$\mathbb{A}$$, and let $$\mathbb{E}[N^{\mathbb{A}}_{t, T}]$$ denote the expected number of times arm $$i$$ is pulled by $$\mathbb{A}$$ when presented the instance $$\mathcal{M}$$. Then there exists an instance $$\mathcal{M}'$$ such that for any reward estimation procedure having knowledge of $$\mu^\star$$ and mappling $$\{I_t\}_{t=1}^T \to \{ \hat{\mu}_i \}_{i\in[K], i \neq i^\star}$$,*
+**Theorem 1** *For every $$K$$-armed Bernoulli bandit instance $$\mathcal{M}$$ satisfying $$\max_{i\in[K]} \mid \mu_i - \frac{1}{2} \mid \leq \frac{1}{4}$$ and for each suboptimal arm $$i\neq i^\star$$, the following is true. Suppose that the demonstrator employs algorithm $$\mathbb{A}$$, and let $$\mathbb{E}[N^{\mathbb{A}}_{t, T}]$$ denote the expected number of times arm $$i$$ is pulled by $$\mathbb{A}$$ when presented the instance $$\mathcal{M}$$. Then there exists an instance $$\mathcal{M}'$$ such that for any reward estimation procedure having knowledge of $$\mu^\star$$ and mapping $$\{I_t\}_{t=1}^T \to \{ \hat{\mu}_i \}_{i\in[K], i \neq i^\star}$$,*
 
 
 $$
