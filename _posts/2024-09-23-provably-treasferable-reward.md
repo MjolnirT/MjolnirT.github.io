@@ -9,7 +9,7 @@ mathjax: true
 classes: wide
 ---
 
-This is a recap of the regert analysis in [(TRAVEL) Provably Efficient Learning of Transferable Rewards](https://proceedings.mlr.press/v139/metelli21a.html).
+This is a recap of the regret analysis in [(TRAVEL) Provably Efficient Learning of Transferable Rewards](https://proceedings.mlr.press/v139/metelli21a.html).
 
 ## 1. Motivation
 Inverse reinforcement learning tackles the challenge of deriving a reward function from observations of an expert's policy within a Markov Decision Process (MDP) framework. Typically, we operate under the assumption that the underlying MDP model is not known. To determine a viable reward function, it may be necessary to first reconstruct the transition model.
@@ -43,7 +43,7 @@ $$    r = - \bar{B}^{\pi^E} \zeta + (E - \gamma P) V.
 $$
 
 
-**Theorem 3.1** (Error Propagation) *Let $$\mathfrak{P} = (\mathcal{M}, \pi^E)$$ and $$\hat{\mathfrak{P}} = (\hat{\mathcal{M}}, \hat{\pi}^E)$$ be two IRL problems. Then, for any $$r \in R_{\mathfrak{P}}$$ such that $$r=-\bar{B} ^{\pi^E}\zeta + (E-\gamma P)V$$ and $$||r||_\infty \leq R_{\max}$$ there exists $$|hat{r}\in R_{\mathfrak{P}}$$ such that element-wise it holds that*
+**Theorem 3.1** (Error Propagation) *Let $$\mathfrak{P} = (\mathcal{M}, \pi^E)$$ and $$\hat{\mathfrak{P}} = (\hat{\mathcal{M}}, \hat{\pi}^E)$$ be two IRL problems. Then, for any $$r \in R_{\mathfrak{P}}$$ such that $$r=-\bar{B} ^{\pi^E}\zeta + (E-\gamma P)V$$ and $$||r||_\infty \leq R_{\max}$$ there exists $$\hat{r}\in R_{\mathfrak{P}}$$ such that element-wise it holds that*
 $$
     |r - \hat{r}| \leq \hat{B}^{\pi^E} B^{\hat{\pi}^E} \zeta + \gamma |(P - \hat{P})V|
 $$

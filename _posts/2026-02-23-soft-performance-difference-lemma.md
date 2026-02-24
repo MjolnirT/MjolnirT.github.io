@@ -103,7 +103,7 @@ where $$A^{\green{\pi'}}_{\lambda}(s, a) = Q^{\green{\pi'}}_{\lambda}(s, a) - V^
 
 The soft performance difference lemma can be considered as a comparison between two policies in terms of their expected returns. We introduce the intermediate policies $$\pi^t$$ where the first $$t$$ steps follow policy $$\pi$$ and the remaining steps follow policy $$\pi'$$. By defining the intermediate policies as follows:
 
-$$\pi^t = (\underbrace{\red{\pi}, \red{\pi}, \cdots, \red{\pi}}_{t \text{ times}}, \underbrace{\green{\pi'}, \green{\pi'}, \cdots, \green{\pi'}}_{\text{remainding times}})$$
+$$\pi^t = (\underbrace{\red{\pi}, \red{\pi}, \cdots, \red{\pi}}_{t \text{ times}}, \underbrace{\green{\pi'}, \green{\pi'}, \cdots, \green{\pi'}}_{\text{remaining times}})$$
 
 Based on the definition of the intermediate policies, we can see that $$\pi^0 = \green{\pi'}$$ and $$\pi^\infty = \red{\pi}$$.
 Then the difference in value functions can be expressed as a telescoping sum:
@@ -131,7 +131,7 @@ $$
 $$
 
 The above derivation is based on decoupling the trajectory into two parts: executing policy $$\red{\pi}$$ in the first $$t$$ steps and executing policy $$\green{\pi'}$$ in the remaining steps.
-To achieve this decoupling, we apply the law of total expectation to condition on the state and action at the first $$t$$ steps (second equation), and then we can use value function of $$\green{\pi'}$$ to express the expected return of the remaining steps (forth equation).
+To achieve this decoupling, we apply the law of total expectation to condition on the state and action at the first $$t$$ steps (second equation), and then we can use value function of $$\green{\pi'}$$ to express the expected return of the remaining steps (fourth equation).
 After the decoupling, we switch the expectation from the intermediate policy $$\pi^t$$ to the policy $$\red{\pi}$$, which is because the first $$t$$ steps of the intermediate policy $$\pi^t$$ are the same as policy $$\red{\pi}$$, and the remaining steps do not affect the expectation of the first $$t$$ steps (last equation).
 
 We apply some iterative expectation 
