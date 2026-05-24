@@ -57,3 +57,47 @@ blockquote {
 body {
   line-height: 1.5; /* gap = font-size / 2 at every viewport */
 }
+
+/* Give the home-page bio more horizontal room:
+   - Zero the right padding (no post-meta column on home).
+   - Narrow the author profile from 300px to 220px at x-large so .page
+     expands by ~80px. Posts/archives keep the default 300px. */
+.layout--home .page {
+  padding-inline-end: 0;
+}
+
+@include breakpoint($x-large) {
+  .layout--home {
+    #main    { max-width: 1800px; }     /* break the 1280px cap on home so 4K users get more room */
+    .sidebar { width: calc(220px - 1em); }
+    .page    { width: calc(100% - 220px); }
+  }
+
+  /* Match: lift the 1280px cap on listing/archive pages and single
+     (publications, posts list, category/tag archives, individual posts). */
+  .layout--single #main,
+  .layout--posts #main,
+  .layout--categories #main,
+  .layout--category #main,
+  .layout--archive #main,
+  .layout--tag #main,
+  .layout--tags #main {
+    max-width: 1800px;
+  }
+}
+
+/* Author-profile sidebar is disabled site-wide on posts, archives, and the
+   publications page; reclaim the empty left column so .page is centered
+   inside #main instead of floating to the right. */
+.layout--single .page,
+.layout--posts .page,
+.layout--categories .page,
+.layout--category .page,
+.layout--archive .page,
+.layout--tag .page,
+.layout--tags .page {
+  float: none;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline-end: 0;
+}
