@@ -1,5 +1,5 @@
 ---
-title: "Multi-armed Bandits with Bounded Rewards: A Short Survey"
+title: "Multi-armed Bandits: A Short Survey"
 date: 2024-01-28 24:00:00 -0700
 category: Survey
 comments: true

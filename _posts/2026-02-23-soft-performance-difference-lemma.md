@@ -135,6 +135,7 @@ To achieve this decoupling, we apply the law of total expectation to condition o
 After the decoupling, we switch the expectation from the intermediate policy $$\pi^t$$ to the policy $$\red{\pi}$$, which is because the first $$t$$ steps of the intermediate policy $$\pi^t$$ are the same as policy $$\red{\pi}$$, and the remaining steps do not affect the expectation of the first $$t$$ steps (last equation).
 
 Subtracting the expressions for two consecutive intermediate policies, the difference becomes:
+
 $$
 \begin{aligned}
 &\quad V^{\pi^{t+1}}_{\lambda}(s_0) - V^{\pi^{t}}_{\lambda}(s_0) \\

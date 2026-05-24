@@ -82,7 +82,7 @@ body {
   .layout--archive #main,
   .layout--tag #main,
   .layout--tags #main {
-    max-width: 1800px;
+    max-width: 1300px;
   }
 }
 
@@ -95,9 +95,125 @@ body {
 .layout--category .page,
 .layout--archive .page,
 .layout--tag .page,
-.layout--tags .page {
+.layout--tags .page,
+.layout--single .archive,
+.layout--posts .archive,
+.layout--categories .archive,
+.layout--category .archive,
+.layout--archive .archive,
+.layout--tag .archive,
+.layout--tags .archive {
   float: none;
   width: 100%;
   margin-inline: auto;
   padding-inline-end: 0;
+}
+
+/* ==========================================================================
+   Day/Night theme toggle
+   ========================================================================== */
+
+/* Toggle button in the masthead nav (placed left of the search icon by JS). */
+.theme-toggle {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1em;
+  line-height: 1;
+  padding: 0.5em;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.theme-toggle:hover { color: $primary-color; }
+.theme-toggle:focus { outline: none; }
+
+/* Dark theme palette. Selectors mirror the ones the compiled theme writes,
+   re-coloring only the surfaces that need it. */
+$dark-bg          : #0f0f12;
+$dark-text        : #e8e3d3;
+$dark-muted       : #9b9590;
+$dark-link        : #e07a7a;
+$dark-link-hover  : #f29494;
+$dark-border      : #3a3530;
+$dark-code-bg     : #1f1d1b;
+$dark-selection   : #5a0000;
+
+[data-theme="dark"] {
+  background-color: $dark-bg;
+  color: $dark-text;
+
+  body { background-color: $dark-bg; color: $dark-text; }
+
+  /* links */
+  a, a:visited            { color: $dark-link; }
+  a:hover                  { color: $dark-link-hover; }
+
+  /* headings */
+  h1, h2, h3, h4, h5, h6   { color: $dark-text; border-color: $dark-border; }
+  .page__title a           { color: $dark-text; }
+
+  /* masthead nav */
+  .masthead                { background-color: $dark-bg; border-bottom-color: $dark-border; }
+  .greedy-nav,
+  .greedy-nav .hidden-links { background-color: $dark-bg; }
+  .greedy-nav a            { color: $dark-text; }
+  .greedy-nav a:hover      { color: $dark-link; }
+  .greedy-nav .site-title  { color: $dark-text; }
+  .greedy-nav__toggle      { color: $dark-text; }
+  .search__toggle          { color: $dark-text; }
+  .search__toggle:hover    { color: $dark-link; }
+  .theme-toggle            { color: $dark-text; }
+  .theme-toggle:hover      { color: $dark-link; }
+
+  /* blockquote */
+  blockquote               { border-left-color: $dark-link; color: $dark-text; }
+
+  /* code */
+  pre, code, .highlight    { background-color: $dark-code-bg; color: $dark-text; }
+  .page__content :not(pre) > code { background-color: $dark-code-bg; color: $dark-text; }
+
+  /* author profile */
+  .author__avatar img      { filter: brightness(0.92); }
+  .author__content,
+  .author__bio,
+  .author__name            { color: $dark-text; }
+  .author__urls a          { color: $dark-text; }
+  .author__urls a:hover    { color: $dark-link; }
+
+  /* Social-icon glyphs use Font Awesome brand colors by default (too dim on
+     dark bg). Override to track the theme. */
+  .author__urls .fa,
+  .author__urls .fab,
+  .author__urls .fas,
+  .author__urls .far,
+  .social-icons .fa,
+  .social-icons .fab,
+  .social-icons .fas,
+  .social-icons .far       { color: $dark-text; }
+  .author__urls a:hover .fa,
+  .author__urls a:hover .fab,
+  .author__urls a:hover .fas,
+  .author__urls a:hover .far,
+  .social-icons a:hover .fa,
+  .social-icons a:hover .fab,
+  .social-icons a:hover .fas,
+  .social-icons a:hover .far { color: $dark-link; }
+
+  /* page meta and small text */
+  .page__meta, .page__date, small { color: $dark-muted; }
+
+  /* footer */
+  .page__footer            { background-color: $dark-bg; color: $dark-text; border-top-color: $dark-border; }
+  .page__footer a          { color: $dark-link; }
+
+  /* tables / hr */
+  hr                       { border-color: $dark-border; }
+  table                    { background-color: $dark-code-bg; color: $dark-text; }
+  th, td                   { border-color: $dark-border; }
+
+  /* selection */
+  ::-moz-selection,
+  ::selection              { background: $dark-selection; color: #fffff8; }
 }

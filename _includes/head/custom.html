@@ -2,6 +2,50 @@
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
+<!-- Day/Night theme: set data-theme before paint to avoid flash on reload. -->
+<script>
+(function() {
+  try {
+    var stored = localStorage.getItem('site-theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) { /* localStorage unavailable */ }
+})();
+</script>
+
+<!-- Day/Night theme: inject toggle button into the masthead nav. -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.createElement('button');
+  btn.className = 'theme-toggle';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Toggle dark mode');
+
+  function paint() {
+    var theme = document.documentElement.getAttribute('data-theme');
+    btn.innerHTML = '<i class="fas fa-' + (theme === 'dark' ? 'sun' : 'moon') + '" aria-hidden="true"></i>';
+  }
+  paint();
+
+  btn.addEventListener('click', function() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('site-theme', next); } catch (e) {}
+    paint();
+  });
+
+  var nav = document.querySelector('.greedy-nav');
+  var searchBtn = nav && nav.querySelector('.search__toggle');
+  if (nav && searchBtn) {
+    nav.insertBefore(btn, searchBtn);
+  } else if (nav) {
+    nav.appendChild(btn);
+  }
+});
+</script>
+
 <script>
 window.MathJax = {
   tex: {
