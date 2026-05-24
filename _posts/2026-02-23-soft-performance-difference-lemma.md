@@ -63,7 +63,7 @@ To understand the potential difference lemma, we can interpret it as follows: th
 In the regularized reinforcement learning setting, we often consider a regularized objective function that includes an additional regularization term to encourage certain properties in the learned policy. Specifically, we consider the entropy-regularized objective function defined as:
 
 $$
-J(\pi) = \mathbb{E}_{s \sim d^\pi, a \sim \pi(\cdot | s)} [r(s, a)] + \lambda \mathbb{E}_{s \sim d^\pi} [\mathcal{H}(\pi(\cdot | s))],
+J(\pi) = \frac{1}{1 - \gamma} \mathbb{E}_{s \sim d^\pi, a \sim \pi(\cdot | s)} [r(s, a)] + \frac{\lambda}{1 - \gamma} \mathbb{E}_{s \sim d^\pi} [\mathcal{H}(\pi(\cdot | s))],
 $$
 
 where $$\mathcal{H}(\pi(\cdot | s))$$ is the entropy of the policy at state $$s$$, and $$\lambda > 0$$ is the regularization coefficient.
@@ -81,7 +81,7 @@ $$
 \end{aligned}
 $$
 
-From the above definitions, we can see that the regularized value function $$V^\pi_{\lambda}(s)$$ and Q-function $$Q^\pi_{\lambda}(s)$$ can be expressed as the sum of the unregularized value function $$V^\pi(s)$$ and Q-function $$Q^\pi_{\lambda}(s, a)$$ plus the entropy regularization term. Both regularization terms represent the expected discounted entropy of the policy along the trajectory, while the one of value function is conditioned on the initial state, while the one of Q-function is conditioned on both the initial state and action. 
+From the above definitions, we can see that the regularized value function $$V^\pi_{\lambda}(s)$$ and Q-function $$Q^\pi_{\lambda}(s, a)$$ can be expressed as the sum of the unregularized value function $$V^\pi(s)$$ and Q-function $$Q^\pi(s, a)$$ plus the entropy regularization term. Both regularization terms represent the expected discounted entropy of the policy along the trajectory, while the one of value function is conditioned on the initial state, while the one of Q-function is conditioned on both the initial state and action. 
 This difference reflects the fundamental difference between the value function and the Q-function, which the value function is only dependent on the state and the Q-function is shifted by one step and is dependent on both the state and action.
 
 # 4. Soft Performance Difference Lemma
@@ -89,7 +89,7 @@ The soft performance difference lemma states that for any two policies $$\red{\p
 
 $$
 \begin{aligned}
-    V^\red{\pi}_{\lambda}(s) - V^{\green{\pi'}}_{\lambda}(s)
+    V^\red{\pi}_{\lambda}(s_0) - V^{\green{\pi'}}_{\lambda}(s_0)
     &= 
     \frac{1}{1 - \gamma} \mathbb{E}_{s \sim d^\red{\pi}, a \sim \red{\pi}(\cdot \mid s)} \left[ 
     Q^{\green{\pi'}}_{\lambda}(s, a) - V^{\green{\pi'}}_{\lambda}(s) - \lambda \log \red{\pi}(a | s) \right] \\
@@ -120,13 +120,13 @@ $$
 \\
 &= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) \right]
 \\
-&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \mathbb{E}_{\tau \sim \pi^{t}, s_k=s_t} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) \mid s_1, a_t \ldots, s_t, a_t \right] \right]
+&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \mathbb{E}_{\tau \sim \pi^{t}} \left[ \sum_{k=0}^\infty \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) \,\Big|\, s_0, a_0, \ldots, s_{t-1}, a_{t-1}, s_t \right] \right]
 \\
-&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^t \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) + \gamma^{t} \mathbb{E}_{\tau \sim \pi^{t}, s_{t}} \left[ \sum_{k=0}^\infty \gamma^k (r(s_{k+t}, a_{k+t}) - \lambda \log \pi^{t}(a_{k+t} | s_{k+t})) \mid s_1, a_t \ldots, s_t, a_t \right] \right]
+&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^{t-1} \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) + \gamma^{t} \mathbb{E}_{\tau \sim \pi^{t}} \left[ \sum_{j=0}^\infty \gamma^j (r(s_{j+t}, a_{j+t}) - \lambda \log \pi^{t}(a_{j+t} | s_{j+t})) \,\Big|\, s_0, a_0, \ldots, s_{t-1}, a_{t-1}, s_t \right] \right]
 \\
-&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^t \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) + \gamma^{t} V^{\pi^{t}}_{\lambda}(s_{t}) \right]
+&= \mathbb{E}_{\tau \sim \pi^{t}, s_0} \left[ \sum_{k=0}^{t-1} \gamma^k (r(s_k, a_k) - \lambda \log \pi^{t}(a_k | s_k)) + \gamma^{t} V^{\pi^{t}}_{\lambda}(s_{t}) \right]
 \\
-&= \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \sum_{k=0}^t \gamma^k (r(s_k, a_k) - \lambda \log \red{\pi}(a_k | s_k)) + \gamma^{t} V^{\green{\pi'}}_{\lambda}(s_{t}) \right]
+&= \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \sum_{k=0}^{t-1} \gamma^k (r(s_k, a_k) - \lambda \log \red{\pi}(a_k | s_k)) + \gamma^{t} V^{\green{\pi'}}_{\lambda}(s_{t}) \right]
 \end{aligned}
 $$
 
@@ -134,14 +134,13 @@ The above derivation is based on decoupling the trajectory into two parts: execu
 To achieve this decoupling, we apply the law of total expectation to condition on the state and action at the first $$t$$ steps (second equation), and then we can use value function of $$\green{\pi'}$$ to express the expected return of the remaining steps (fourth equation).
 After the decoupling, we switch the expectation from the intermediate policy $$\pi^t$$ to the policy $$\red{\pi}$$, which is because the first $$t$$ steps of the intermediate policy $$\pi^t$$ are the same as policy $$\red{\pi}$$, and the remaining steps do not affect the expectation of the first $$t$$ steps (last equation).
 
-We apply some iterative expectation 
-then the difference in value functions between two consecutive intermediate policies can be expressed as:
+Subtracting the expressions for two consecutive intermediate policies, the difference becomes:
 $$
 \begin{aligned}
 &\quad V^{\pi^{t+1}}_{\lambda}(s_0) - V^{\pi^{t}}_{\lambda}(s_0) \\
-&= \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \sum_{k=0}^{t+1} \gamma^k (r(s_k, a_k) - \lambda \log \red{\pi}(a_k | s_k)) + \gamma^{t+1} V^{\green{\pi'}}_{\lambda}(s_{t+1}) \right]
+&= \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \sum_{k=0}^{t} \gamma^k (r(s_k, a_k) - \lambda \log \red{\pi}(a_k | s_k)) + \gamma^{t+1} V^{\green{\pi'}}_{\lambda}(s_{t+1}) \right]
 \\
-&\quad - \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \sum_{k=0}^t \gamma^k (r(s_k, a_k) - \lambda \log \red{\pi}(a_k | s_k)) + \gamma^{t} V^{\green{\pi'}}_{\lambda}(s_{t}) \right]
+&\quad - \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \sum_{k=0}^{t-1} \gamma^k (r(s_k, a_k) - \lambda \log \red{\pi}(a_k | s_k)) + \gamma^{t} V^{\green{\pi'}}_{\lambda}(s_{t}) \right]
 \\
 &= \mathbb{E}_{\tau \sim \red{\pi}, s_0} \left[ \gamma^t (r(s_t, a_t) - \lambda \log \red{\pi}(a_t | s_t) + \gamma V^{\green{\pi'}}_{\lambda}(s_{t+1}) - V^{\green{\pi'}}_{\lambda}(s_{t})) \right]
 \end{aligned}
