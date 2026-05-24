@@ -27,6 +27,13 @@ $footer-background-color   : $code-background-color;
 $masthead-link-color       : $text-color;
 $masthead-link-color-hover : $primary-color;
 
+/* Typography: tighter responsive range for comfortable long-form reading.
+   line-height: 1.5 (locked below) keeps line-gap = font-size / 2 at every step. */
+$doc-font-size             : 17px;
+$doc-font-size-medium      : 18px;
+$doc-font-size-large       : 19px;
+$doc-font-size-x-large     : 20px;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
@@ -45,4 +52,8 @@ a:hover {
 
 blockquote {
   border-left: 4px solid $primary-color;
+}
+
+body {
+  line-height: 1.5; /* gap = font-size / 2 at every viewport */
 }
