@@ -1,0 +1,48 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough).
+search: false
+---
+
+@charset "utf-8";
+
+/* ==========================================================================
+   "Paper & Ink" palette
+   Tufte-inspired: warm cream background, ink text, dark crimson accent.
+   Declared before imports so they override the skin's !default values.
+   ========================================================================== */
+
+$background-color          : #fffff8;
+$text-color                : #1a1a1a;
+$muted-text-color          : #6e6e6e;
+
+$primary-color             : #8b0000;
+$link-color                : $primary-color;
+$link-color-hover          : #b00020;
+$link-color-visited        : #5a0000;
+
+$border-color              : #e8e3d3;
+$code-background-color     : #f4efe1;
+$footer-background-color   : $code-background-color;
+
+$masthead-link-color       : $text-color;
+$masthead-link-color-hover : $primary-color;
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* Behavioral overrides applied after the theme's rules. */
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+::-moz-selection,
+::selection {
+  background: #f4d9d9;
+  color: $text-color;
+}
+
+blockquote {
+  border-left: 4px solid $primary-color;
+}
