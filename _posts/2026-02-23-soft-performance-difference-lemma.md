@@ -1,5 +1,6 @@
 ---
 title: "Soft Performance Difference Lemma"
+description: "A self-contained note deriving the soft performance difference lemma for regularized reinforcement learning, building from the value/Q functions and potential difference lemma to the entropy-regularized setting behind algorithms like SAC and PPO."
 date: 2026-02-22 21:00:00 -0700
 category: Note
 comments: true
