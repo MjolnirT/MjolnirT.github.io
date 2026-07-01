@@ -1,5 +1,5 @@
 ---
-title: "Publications"
+title: "Selected Publications"
 layout: single
 permalink: /publications/
 author_profile: false

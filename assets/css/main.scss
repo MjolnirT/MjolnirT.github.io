@@ -58,6 +58,16 @@ body {
   line-height: 1.5; /* gap = font-size / 2 at every viewport */
 }
 
+/* Author avatar: a bit larger and square — no circular crop or ring.
+   (Theme default is 110px, border-radius 50%, with a 5px pad + 1px border
+   at the $large breakpoint.) */
+.author__avatar img {
+  max-width: 255px; /* 1.5x the previous 170px */
+  border-radius: 0;
+  padding: 0;
+  border: none;
+}
+
 /* Give the home-page bio more horizontal room:
    - Zero the right padding (no post-meta column on home).
    - Narrow the author profile from 300px to 220px at x-large so .page
