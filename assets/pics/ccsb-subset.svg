@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="380" viewBox="0 0 560 380" role="img" aria-labelledby="title description">
+  <title id="title">Contextual combinatorial semi-bandits: choose, observe, and learn</title>
+  <desc id="description">Context, such as user preferences, query features, or system state, changes the expected reward of each item. One action is a feasible subset of items. This illustration uses the constraint of choosing exactly three of six items, giving twenty possible subsets; other problems can impose budgets or structural constraints. Under context x1, the learner chooses items one, three, and five and observes rewards one, zero, and one. Under context x2, it chooses items two, three, and six and observes rewards one, one, and zero. Question marks denote unobserved rewards, not zero rewards. These are illustrative choices and outcomes, not known optimal actions. The learner uses the individual observed rewards to update its estimate of the unknown context-dependent reward function f(x, item), balancing predicted reward and uncertainty when choosing future subsets. The objective is to maximize the sum of chosen-item rewards over repeated rounds.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#8b0000"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #1a1a1a; }
+      .center { text-anchor: middle; }
+      .selected { fill: #8b0000; stroke: #8b0000; stroke-width: 2; }
+      .available { fill: #f4efe1; stroke: #c9c3b3; stroke-width: 2; }
+      .item { font-size: 25px; font-weight: 700; text-anchor: middle; }
+      .selected-label { fill: #fffff8; }
+      .unknown { fill: #878173; font-size: 25px; text-anchor: middle; }
+      .reward { fill: #8b0000; font-size: 27px; font-weight: 700; text-anchor: middle; }
+      .flow { fill: none; stroke: #8b0000; stroke-width: 2; marker-end: url(#arrow); }
+      .check { fill: none; stroke: #fffff8; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <g id="chosen-item">
+      <rect class="selected" width="48" height="48" rx="9"/>
+      <path class="check" d="M 32 10 l 4 4 l 6 -7"/>
+    </g>
+    <rect id="available-item" class="available" width="48" height="48" rx="9"/>
+  </defs>
+  <rect width="560" height="380" rx="12" fill="#fffff8"/>
+
+  <text class="center" x="280" y="30" font-size="28" font-weight="700">Context changes the choice</text>
+  <text class="center" x="280" y="59" font-size="21">Choose 3 of 6 items</text>
+
+  <!-- Different feature vectors can lead to different choices over the same arms. -->
+  <rect x="12" y="91" width="127" height="66" rx="10" fill="#f4efe1" stroke="#c9c3b3"/>
+  <text class="center" x="75.5" y="115" font-size="22">Context x₁</text>
+  <path d="M 38 129 H 111 M 38 140 H 72 M 38 151 H 94" fill="none" stroke="#8b0000" stroke-width="5" stroke-linecap="round"/>
+  <path class="flow" d="M 145 124 H 165"/>
+  <text class="center" x="75.5" y="185" font-size="19">Reward</text>
+
+  <g transform="translate(173 100)">
+    <use href="#chosen-item"/>
+    <text class="item selected-label" x="24" y="35">1</text>
+    <use href="#available-item" x="60"/>
+    <text class="item" x="84" y="35">2</text>
+    <use href="#chosen-item" x="120"/>
+    <text class="item selected-label" x="144" y="35">3</text>
+    <use href="#available-item" x="180"/>
+    <text class="item" x="204" y="35">4</text>
+    <use href="#chosen-item" x="240"/>
+    <text class="item selected-label" x="264" y="35">5</text>
+    <use href="#available-item" x="300"/>
+    <text class="item" x="324" y="35">6</text>
+
+    <path class="flow" d="M 24 52 V 64"/>
+    <path class="flow" d="M 144 52 V 64"/>
+    <path class="flow" d="M 264 52 V 64"/>
+    <text class="reward" x="24" y="87">1</text>
+    <text class="unknown" x="84" y="87">?</text>
+    <text class="reward" x="144" y="87">0</text>
+    <text class="unknown" x="204" y="87">?</text>
+    <text class="reward" x="264" y="87">1</text>
+    <text class="unknown" x="324" y="87">?</text>
+  </g>
+
+  <line x1="16" y1="202" x2="521" y2="202" stroke="#e8e3d3"/>
+
+  <rect x="12" y="213" width="127" height="66" rx="10" fill="#f4efe1" stroke="#c9c3b3"/>
+  <text class="center" x="75.5" y="237" font-size="22">Context x₂</text>
+  <path d="M 38 251 H 63 M 38 262 H 113 M 38 273 H 82" fill="none" stroke="#8b0000" stroke-width="5" stroke-linecap="round"/>
+  <path class="flow" d="M 145 246 H 165"/>
+  <text class="center" x="75.5" y="307" font-size="19">Reward</text>
+
+  <g transform="translate(173 222)">
+    <use href="#available-item"/>
+    <text class="item" x="24" y="35">1</text>
+    <use href="#chosen-item" x="60"/>
+    <text class="item selected-label" x="84" y="35">2</text>
+    <use href="#chosen-item" x="120"/>
+    <text class="item selected-label" x="144" y="35">3</text>
+    <use href="#available-item" x="180"/>
+    <text class="item" x="204" y="35">4</text>
+    <use href="#available-item" x="240"/>
+    <text class="item" x="264" y="35">5</text>
+    <use href="#chosen-item" x="300"/>
+    <text class="item selected-label" x="324" y="35">6</text>
+
+    <path class="flow" d="M 84 52 V 64"/>
+    <path class="flow" d="M 144 52 V 64"/>
+    <path class="flow" d="M 324 52 V 64"/>
+    <text class="unknown" x="24" y="87">?</text>
+    <text class="reward" x="84" y="87">1</text>
+    <text class="reward" x="144" y="87">1</text>
+    <text class="unknown" x="204" y="87">?</text>
+    <text class="unknown" x="264" y="87">?</text>
+    <text class="reward" x="324" y="87">0</text>
+  </g>
+
+  <!-- Observed rewards train a context-dependent reward model for future decisions. -->
+  <rect x="12" y="326" width="510" height="47" rx="10" fill="#f4efe1"/>
+  <text class="center" x="267" y="347" font-size="21" font-weight="700">Reward → learn → choose again</text>
+  <text class="center" x="267" y="367" font-size="18">Goal: maximize total reward</text>
+  <path class="flow" d="M 526 350 H 539 Q 548 350 548 341 V 85 Q 548 77 540 77 H 181 Q 173 77 173 85 V 93"/>
+</svg>

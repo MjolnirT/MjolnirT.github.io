@@ -58,6 +58,33 @@ body {
   line-height: 1.5; /* gap = font-size / 2 at every viewport */
 }
 
+/* Keep publication figure padding compact and separate neighboring rows. */
+.publication {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.publication + .publication {
+  margin-top: 1.25rem;
+}
+
+.publication__figure {
+  flex: 0 0 25%;
+  align-self: flex-start;
+  background: $background-color;
+  padding: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.publication__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
 /* Author avatar: a bit larger and square — no circular crop or ring.
    (Theme default is 110px, border-radius 50%, with a 5px pad + 1px border
    at the $large breakpoint.) */

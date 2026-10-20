@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="380" viewBox="0 0 560 380" role="img" aria-labelledby="title description">
+  <title id="title">Partial monitoring: revealed symbols and hidden rewards</title>
+  <desc id="description">A conceptual illustration of contextual partial monitoring through model routing. Given a prompt x, the learner chooses one of two alternatives: a small model or a large model. Each model branch produces two associated outputs: a feedback symbol sigma, revealed to the user and learner, and a reward r, which remains hidden. The diagram shows the two possible routes, not simultaneous calls to both models. Solid teal cards represent revealed symbols; dashed cards with question marks represent hidden rewards. Only the revealed symbols feed the learning update and guide future routing decisions. The objective is to maximize cumulative reward using this indirect feedback.</desc>
+  <defs>
+    <marker id="slate-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#61758a"/>
+    </marker>
+    <marker id="teal-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#087e8b"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #18354a; text-anchor: middle; }
+      .title { font-family: Georgia, "Times New Roman", serif; font-weight: 700; }
+      .slate-flow { fill: none; stroke: #61758a; stroke-width: 2; marker-end: url(#slate-arrow); }
+      .teal-flow { fill: none; stroke: #087e8b; stroke-width: 2; marker-end: url(#teal-arrow); }
+      .hidden-flow { fill: none; stroke: #61758a; stroke-width: 2; stroke-dasharray: 4 4; marker-end: url(#slate-arrow); }
+      .revealed { fill: #e3f2ef; stroke: #087e8b; stroke-width: 1.5; }
+      .hidden { fill: #f5f9fa; stroke: #8c9eae; stroke-width: 1.5; stroke-dasharray: 5 4; }
+      .muted { fill: #536b7b; }
+      .light { fill: #fff; }
+      .teal { fill: #087e8b; }
+    </style>
+  </defs>
+  <rect width="560" height="380" rx="18" fill="#f5f9fa"/>
+
+  <text class="title" x="280" y="31" font-size="29">Learning from indirect feedback</text>
+  <text class="muted" x="280" y="58" font-size="20">A symbol is revealed; the reward stays hidden</text>
+
+  <rect x="170" y="76" width="220" height="50" rx="25" fill="#18354a"/>
+  <text class="light" x="280" y="100" font-size="24" font-weight="700">Prompt x</text>
+  <text x="280" y="118" font-size="17" style="fill:#d6e8ed">choose one model</text>
+  <path class="slate-flow" d="M 280 129 V 136 H 148 Q 140 136 140 144 V 151"/>
+  <path class="teal-flow" d="M 280 129 V 136 H 412 Q 420 136 420 144 V 151"/>
+
+  <!-- Alternative routes. Only the selected model's outputs are realized. -->
+  <rect x="34" y="157" width="212" height="47" rx="12" fill="#425f78"/>
+  <text class="light" x="140" y="188" font-size="25" font-weight="700">Small model</text>
+  <rect x="304" y="157" width="232" height="47" rx="12" fill="#087e8b"/>
+  <text class="light" x="420" y="188" font-size="25" font-weight="700">Large model</text>
+
+  <!-- Both routes have a revealed feedback symbol and an unobserved reward. -->
+  <path class="teal-flow" d="M 140 208 V 215 H 83 Q 75 215 75 223 V 228"/>
+  <path class="hidden-flow" d="M 140 208 V 215 H 194 Q 202 215 202 223 V 228"/>
+  <path class="teal-flow" d="M 420 208 V 215 H 363 Q 355 215 355 223 V 228"/>
+  <path class="hidden-flow" d="M 420 208 V 215 H 474 Q 482 215 482 223 V 228"/>
+
+  <rect class="revealed" x="22" y="233" width="106" height="77" rx="12"/>
+  <text x="75" y="254" font-size="21" font-weight="700">Symbol</text>
+  <text class="teal" x="75" y="282" font-size="30">σ</text>
+  <text class="teal" x="75" y="302" font-size="18">Revealed</text>
+
+  <rect class="hidden" x="146" y="233" width="112" height="77" rx="12"/>
+  <text x="202" y="254" font-size="21" font-weight="700">Reward</text>
+  <text class="muted" x="202" y="282" font-size="29">?</text>
+  <text class="muted" x="202" y="302" font-size="18">Hidden</text>
+
+  <rect class="revealed" x="302" y="233" width="106" height="77" rx="12"/>
+  <text x="355" y="254" font-size="21" font-weight="700">Symbol</text>
+  <text class="teal" x="355" y="282" font-size="30">σ</text>
+  <text class="teal" x="355" y="302" font-size="18">Revealed</text>
+
+  <rect class="hidden" x="426" y="233" width="112" height="77" rx="12"/>
+  <text x="482" y="254" font-size="21" font-weight="700">Reward</text>
+  <text class="muted" x="482" y="282" font-size="29">?</text>
+  <text class="muted" x="482" y="302" font-size="18">Hidden</text>
+
+  <!-- Only observed symbols connect to the learner's update. -->
+  <path d="M 75 315 V 325 H 355 V 315" fill="none" stroke="#087e8b" stroke-width="1.5"/>
+  <path class="teal-flow" d="M 280 325 V 335"/>
+  <text x="280" y="355" font-size="22" font-weight="700">Symbols → update model → route again</text>
+  <text class="muted" x="280" y="376" font-size="19">Goal: maximize cumulative reward</text>
+</svg>
