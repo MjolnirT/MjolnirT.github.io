@@ -58,7 +58,7 @@ body {
   line-height: 1.5; /* gap = font-size / 2 at every viewport */
 }
 
-/* Keep publication figure padding compact and separate neighboring rows. */
+/* Use uniform 4:3 figure frames and separate neighboring publication rows. */
 .publication {
   display: flex;
   justify-content: flex-end;
@@ -71,6 +71,7 @@ body {
 
 .publication__figure {
   flex: 0 0 25%;
+  min-width: 0;
   align-self: flex-start;
   background: $background-color;
   padding: 4px;
@@ -78,10 +79,16 @@ body {
   box-sizing: border-box;
 }
 
+.publication__figure a {
+  display: block;
+}
+
 .publication__figure img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
   margin: 0;
 }
 
@@ -217,6 +224,35 @@ $dark-selection   : #5a0000;
   .author__content,
   .author__bio,
   .author__name            { color: $dark-text; }
+  .author__urls-wrapper .btn--inverse {
+    background-color: $dark-code-bg;
+    color: $dark-text;
+    border-color: $dark-border;
+
+    &:hover,
+    &.open {
+      background-color: $dark-border;
+      color: $dark-text;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $dark-link;
+      outline-offset: 2px;
+    }
+  }
+
+  .author__urls {
+    background-color: $dark-code-bg;
+    color: $dark-text;
+    border-color: $dark-border;
+
+    &::before { border-bottom-color: $dark-border; }
+    &::after  { border-bottom-color: $dark-code-bg; }
+
+    @include breakpoint($large) {
+      background-color: transparent;
+    }
+  }
   .author__urls a          { color: $dark-text; }
   .author__urls a:hover    { color: $dark-link; }
 
